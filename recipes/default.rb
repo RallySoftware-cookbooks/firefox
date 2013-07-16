@@ -34,3 +34,17 @@ ark 'firefox' do
   group node['firefox']['group']
   mode  node['firefox']['mode']
 end
+
+dependencies = ['glibc', 'libstdc++-devel', 'libXrender', 'alsa-lib', 'libXext', 'pango-devel', 'gtk2', 'libXt']
+
+dependencies.each do |dep|
+  yum_package dep do
+    arch 'i686'
+  end
+end
+
+yum_package 'dbus-glib' do
+  arch 'i686'
+  action :install
+  options '--setopt=protected_multilib=false'
+end   
