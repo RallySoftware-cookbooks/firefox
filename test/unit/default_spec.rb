@@ -26,4 +26,6 @@ describe 'firefox::default' do
   it { should mode_ark('firefox', permissions) }
   it { should url_ark('firefox', url) }
 
+  it { should install_package('urw-fonts') }
+
 end

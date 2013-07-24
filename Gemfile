@@ -17,6 +17,6 @@ gem 'foodcritic', :git => 'https://github.com/acrmp/foodcritic.git', :ref => '20
 gem 'json', '1.7.7'
 
 group :integration do
-  gem 'test-kitchen', :git => 'https://github.com/RallySoftware-cookbooks/test-kitchen', :branch => 'KITCHEN-75'
+  gem 'test-kitchen', :git => 'https://github.com/opscode/test-kitchen'
   gem 'kitchen-vagrant'
 end

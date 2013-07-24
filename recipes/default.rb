@@ -35,7 +35,8 @@ ark 'firefox' do
   mode  node['firefox']['mode']
 end
 
-dependencies = ['glibc', 'libstdc++-devel', 'libXrender', 'alsa-lib', 'libXext', 'pango-devel', 'gtk2', 'libXt']
+dependencies = ['glibc', 'libstdc++-devel', 'libXrender', 'alsa-lib', 'libXext', 
+                'pango-devel', 'gtk2', 'libXt']
 
 dependencies.each do |dep|
   yum_package dep do
@@ -48,3 +49,5 @@ yum_package 'dbus-glib' do
   action :install
   options '--setopt=protected_multilib=false'
 end   
+
+package 'urw-fonts'
