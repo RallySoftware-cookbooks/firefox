@@ -16,3 +16,5 @@ bin/*
 .kitchen/
 
 .DS_Store
+vendor/
+test/.chef
