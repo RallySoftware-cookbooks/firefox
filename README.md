@@ -1,6 +1,8 @@
 Description
 ===========
 
+NOTE: available firefox versions are here:   https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/
+
 Requirements
 ============
 
