@@ -7,25 +7,19 @@ describe 'firefox::default' do
   let(:owner) { 'firefoxuser' }
   let(:group) { 'firefoxgroup' }
   let(:permissions) { 777 }
-  
-  let (:chef_run) do
-    ChefSpec::ChefRunner.new(:step_into => [:ark]) do |node|
+
+  subject(:chef_run) do
+    ChefSpec::Runner.new do |node|
       node.set['firefox']['version'] = version
       node.set['firefox']['source_url'] = url
       node.set['firefox']['path'] = path
       node.set['firefox']['owner'] = owner
       node.set['firefox']['group'] = group
       node.set['firefox']['mode'] = permissions
-    end
+    end.converge described_recipe
   end
 
-  subject { chef_run.converge 'firefox::default' }
-  
-  it { should install_ark('firefox', path) }
-  it { should owner_group_ark('firefox', owner, group) }
-  it { should mode_ark('firefox', permissions) }
-  it { should url_ark('firefox', url) }
-
+  it { should put_ark('firefox').with(path: path, owner: owner, group: group, mode: permissions, url: url) }
   it { should install_package('urw-fonts') }
 
 end
