@@ -7,6 +7,7 @@ NOTE: available firefox versions are here:   https://ftp.mozilla.org/pub/mozilla
 ### Platform
 List the supported platforms from the metadata.rb file -
 * Centos 6.4
+* Ubuntu 12.04
 
 ## Attributes
 ### default
