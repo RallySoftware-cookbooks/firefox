@@ -10,16 +10,17 @@ platforms:
     customize:
       cpus: 1
       memory: 256
-- name: ubuntu-12.04
+- name: ubuntu-14.04
   driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+    box: opscode-ubuntu-14.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
     require_chef_omnibus: true
     customize:
       cpus: 1
       memory: 256
   attributes:
     firefox:
+      version: '28.0'
       arch: 'linux-x86_64'
 suites:
 - name: default
