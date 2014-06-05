@@ -26,28 +26,41 @@
 
 include_recipe 'ark'
 
+source_url = node[:firefox][:source_url] || "https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/#{node[:firefox][:version]}/#{node[:firefox][:arch]}/en-US/firefox-#{node[:firefox][:version]}.tar.bz2"
+
 ark 'firefox' do    
   action :put
-  url   node['firefox']['source_url']
-  path  node['firefox']['path']
-  owner node['firefox']['owner']
-  group node['firefox']['group']
-  mode  node['firefox']['mode']
+  url   source_url
+  path  node[:firefox][:path]
+  owner node[:firefox][:owner]
+  group node[:firefox][:group]
+  mode  node[:firefox][:mode]
 end
 
-dependencies = ['glibc', 'libstdc++-devel', 'libXrender', 'alsa-lib', 'libXext', 
-                'pango-devel', 'gtk2', 'libXt']
+case node[:platform]
+when 'centos'
+  dependencies = ['glibc', 'libstdc++-devel', 'libXrender', 'alsa-lib', 'libXext', 
+                  'gtk2', 'libXt']
 
-dependencies.each do |dep|
-  yum_package dep do
+
+  dependencies.each do |dep|
+    yum_package dep do
+      arch 'i686'
+    end
+  end
+
+  yum_package 'dbus-glib' do
     arch 'i686'
+    action :install
+    options '--setopt=protected_multilib=false'
+  end
+
+  package 'urw-fonts'
+
+when 'ubuntu'
+  include_recipe 'apt'
+
+  %w(libxt6 libxrender1 libasound2 libgtk2.0-0).each do |dep|
+    package dep
   end
 end
-
-yum_package 'dbus-glib' do
-  arch 'i686'
-  action :install
-  options '--setopt=protected_multilib=false'
-end   
-
-package 'urw-fonts'
