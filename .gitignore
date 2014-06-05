@@ -18,3 +18,4 @@ bin/*
 .DS_Store
 vendor/
 test/.chef
+VERSION
