@@ -9,7 +9,7 @@ platforms:
     require_chef_omnibus: true
     customize:
       cpus: 1
-      memory: 256
+      memory: 1024
 - name: ubuntu-14.04
   driver_config:
     box: opscode-ubuntu-14.04
@@ -17,7 +17,7 @@ platforms:
     require_chef_omnibus: true
     customize:
       cpus: 1
-      memory: 256
+      memory: 1024
   attributes:
     firefox:
       version: '28.0'
